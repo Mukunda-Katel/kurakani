@@ -1,0 +1,49 @@
+{% extends 'chat/base.html' %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-8">
+        <div class="card">
+            <div class="card-body text-center">
+                <h1 class="card-title">Welcome to Simple Chat App</h1>
+                <p class="card-text">Connect with friends and family through our simple chat application.</p>
+                
+                {% if user.is_authenticated %}
+                    <div class="d-grid gap-2 col-6 mx-auto">
+                        <a href="{% url 'chat_room' %}" class="btn btn-primary btn-lg">
+                            Enter Chat Room
+                        </a>
+                    </div>
+                {% else %}
+                    <div class="d-grid gap-2 col-6 mx-auto">
+                        <a href="{% url 'login' %}" class="btn btn-primary btn-lg">
+                            Login to Chat
+                        </a>
+                        <a href="{% url 'register' %}" class="btn btn-outline-primary btn-lg">
+                            Create Account
+                        </a>
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+        
+        <div class="mt-4">
+            <h3>Features:</h3>
+            <ul class="list-group">
+                <li class="list-group-item">
+                    <strong>Real-time messaging:</strong> Send and receive messages instantly
+                </li>
+                <li class="list-group-item">
+                    <strong>User authentication:</strong> Secure login and registration
+                </li>
+                <li class="list-group-item">
+                    <strong>Message history:</strong> View previous conversations
+                </li>
+                <li class="list-group-item">
+                    <strong>Responsive design:</strong> Works on all devices
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+{% endblock %}
