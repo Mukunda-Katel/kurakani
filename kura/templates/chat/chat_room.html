@@ -1,0 +1,36 @@
+{% extends 'chat/base.html' %} 
+
+{% block title %}Chat Room - Simple Chat App{% endblock %}
+
+{% block content %}
+<div>
+    <div>
+        <div>
+            <h4>💬 Chat Room</h4>
+        </div>
+        <div>
+            <div id="chat-box">
+                {% for message in messages %}
+                    <div>
+                        {% if message.user != user %}
+                            <div>{{ message.user.username }} - {{ message.timestamp|date:"H:i" }}</div>
+                        {% endif %}
+                        <div>{{ message.message }}</div>
+                        {% if message.user == user %}
+                            <div>{{ message.timestamp|date:"H:i" }}</div>
+                        {% endif %}
+                    </div>
+                {% endfor %}
+            </div>
+            
+            <form method="post" id="message-form">
+                {% csrf_token %}
+                <div>
+                    {{ form.message }}
+                </div>
+                <button type="submit">Send</button>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}
